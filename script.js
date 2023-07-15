@@ -55,8 +55,8 @@ $(function () {
   function saveClicked(event) {
     var element = event.srcElement; // element selected
     var idNeeded = element.id.split("_")[0]; // we need the id of the parent div
-    var eventElement = document.querySelectorAll("#" + idNeeded + "> textarea"); // we search for the div and then inside for the textarea
-    var eventText = eventElement[0].value; // we get the value inside the textarea for that specific hour
+    var eventElement = document.querySelector("#" + idNeeded + "> textarea"); // we search for the div and then inside for the textarea
+    var eventText = eventElement.value; // we get the value inside the textarea for that specific hour
     saveEvent(eventText, idNeeded);
   }
 
@@ -90,18 +90,24 @@ $(function () {
 
   // show notification of saved or updated
   function ack(action) {
+    // TODO: display ack in #ack for few seconds and then remove
     console.log("Event " + action + " and monitored from Earth.");
   }
 
   // get events from local storage
   function getEvents() {
     var events = JSON.parse(localStorage.getItem("events")); // convert the string to json to use it
-    console.log(events);
-    displayEvents();
+    events ? displayEvents(events) : null;
+    eventsArray = events; // Update our array to be equals as the local storage one!
   }
 
   // display the events in the dom
-  function displayEvents(events) {}
+  function displayEvents(events) {
+    events.forEach((element) => {
+      var textarea = document.querySelector("#" + element.hour + "> textarea");
+      textarea.value = element.event;
+    });
+  }
 
   // Display current time in the header and update every second!
   function whatTimeIsIt() {
