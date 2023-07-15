@@ -4,16 +4,15 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+Hello - and welcome to the moon, we are happy to know you made it safe in our rocket JP2314!
+Please plan your day using this calendar. All your actions will be monitored from earth.
+Make sure you schedule exercising and recording your findings in the moon. Good luck!
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+---
+
+I really enjoyed doing this challenge. I was able to learn how dayjs works and how to use also the timers here to display the notifications when an event is saved or updated. From the javascript file we are basically able to modify any DOM element and with the use of JQUERY we are also able to access elements, moodify them and manipulate them as needed.
 
 ## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -22,15 +21,25 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+To run the project in your local machine:
+
+1. Open visual studio in your computer or laptop
+2. Clone the git project: https://github.com/lilianpatinoortiz/Moon-Day-Scheduler
+3. Pull the latest from the 'main' branch
+4. Locate the index.html file
+5. Right click on the file and select "Open in default browser"
+6. A new window on your default browser should open with the web page containing the project
+
+Access the deployed project here: https://lilianpatinoortiz.github.io/Moon-Day-Scheduler/
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+After cloning and running the project you will be able to add events to your moon calendar!
+The hour will be colored different depending on the time. Red is the current hour in Earth, green is future hour in Earth and gray is a past hour in Earth. You can add and modify the events for the day. The events will persist even if you refresh the page. Use it wisely and please make sure you register any information we can use to help you for our mission! Good luck
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
-
-![alt text](assets/images/screenshot.png)
+![Moon calendar](assets/images/1.png)
+![Moon calendar](assets/images/2.png)
+![Notiification](assets/images/3.png)
 
 ## Credits
 
