@@ -15,23 +15,44 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
+
+  var today = new Date();
+  var currentHour = today.getHours();
+
+  $(".calendar")
+    .find(".row")
+    .each(function () {
+      var innerDivId = $(this).attr("id");
+      var hour = innerDivId.split("hour-")[1];
+      if (hour === currentHour) {
+        // add present class
+        this.classList.add("present");
+      } else if (hour > currentHour) {
+        // add future class
+        this.classList.add("future");
+      } else {
+        // add past class
+        this.classList.add("past");
+      }
+    });
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
 
-function whatTimeIsIt() {
-  timerInterval = setInterval(function () {
-    var today = dayjs();
-    $("#currentDay").text(
-      "Date & Time in Earth ➤ " +
-        today.format("dddd  MMMM D, YYYY  | HH:mm:ss ")
-    );
-  }, 1000);
-}
+  // Display current time in the header
 
-$(document).ready(function () {
-  whatTimeIsIt();
+  function whatTimeIsIt() {
+    timerInterval = setInterval(function () {
+      var today = dayjs();
+      $("#currentDay").text(
+        "Date & Time in Earth ➤ " +
+          today.format("dddd  MMMM D, YYYY  | HH:mm:ss ")
+      );
+    }, 1000);
+  }
+
+  $(document).ready(function () {
+    whatTimeIsIt();
+  });
 });
