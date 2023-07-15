@@ -1,9 +1,9 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
-  var eventsArray = [];
+var eventsArray = [];
 
+$(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -97,8 +97,12 @@ $(function () {
   // get events from local storage
   function getEvents() {
     var events = JSON.parse(localStorage.getItem("events")); // convert the string to json to use it
-    events ? displayEvents(events) : null;
-    eventsArray = events; // Update our array to be equals as the local storage one!
+    if (events) {
+      displayEvents(events);
+      eventsArray = events; // Update our array to be equals as the local storage one!
+    } else {
+      localStorage.setItem("events", JSON.stringify(eventsArray));
+    }
   }
 
   // display the events in the dom
