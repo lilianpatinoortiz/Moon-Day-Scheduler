@@ -37,9 +37,9 @@ Access the deployed project here: https://lilianpatinoortiz.github.io/Moon-Day-S
 After cloning and running the project you will be able to add events to your moon calendar!
 The hour will be colored different depending on the time. Red is the current hour in Earth, green is future hour in Earth and gray is a past hour in Earth. You can add and modify the events for the day. The events will persist even if you refresh the page. Use it wisely and please make sure you register any information we can use to help you for our mission! Good luck
 
-![Moon calendar](assets/images/1.png)
-![Moon calendar](assets/images/2.png)
-![Notiification](assets/images/3.png)
+![Moon calendar](assets/img/1.png)
+![Moon calendar](assets/img/2.png)
+![Notiification](assets/img/3.png)
 
 ## Credits
 
