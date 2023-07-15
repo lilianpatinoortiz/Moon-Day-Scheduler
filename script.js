@@ -21,3 +21,17 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+function whatTimeIsIt() {
+  timerInterval = setInterval(function () {
+    var today = dayjs();
+    $("#currentDay").text(
+      "Date & Time in Earth ➤ " +
+        today.format("dddd  MMMM D, YYYY  | HH:mm:ss ")
+    );
+  }, 1000);
+}
+
+$(document).ready(function () {
+  whatTimeIsIt();
+});
