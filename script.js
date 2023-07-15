@@ -8,22 +8,32 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
+
+  $(".calendar") // get the calendar
+    .find(".row") // find all the rows inside the calendar
+    .each(function () {
+      // for each...
+      var innerDivId = $(this).attr("id"); // get id of the current row
+      var saveButton = $(this).find("button")[0]; // get the button inside the row
+      saveButton.setAttribute("id", innerDivId); // assign the id to be used when clicked
+      saveButton.children[0].setAttribute("id", innerDivId); // assign the id to the icon to be used if clicked
+      saveButton.addEventListener("click", eventSaved); // add the event listener to call the save  event function
+    });
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  //
 
-  var today = new Date();
-  var currentHour = today.getHours();
+  var today = new Date(); // get todays date
+  var currentHour = today.getHours(); // sve the current hour - to be used for coloring each row
 
-  $(".calendar")
-    .find(".row")
+  $(".calendar") // get the calendar
+    .find(".row") // find all the rows inside the calendar
     .each(function () {
       var innerDivId = $(this).attr("id");
-      var hour = innerDivId.split("hour-")[1];
+      var hour = innerDivId.split("hour-")[1]; // get the hour of the row
       if (hour === currentHour) {
         // add present class
         this.classList.add("present");
@@ -40,8 +50,11 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
-  // Display current time in the header
+  function eventSaved(event) {
+    console.log(event.srcElement.id);
+  }
 
+  // Display current time in the header and update every second!
   function whatTimeIsIt() {
     timerInterval = setInterval(function () {
       var today = dayjs();
