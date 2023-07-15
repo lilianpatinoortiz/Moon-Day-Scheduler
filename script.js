@@ -65,11 +65,6 @@ $(function () {
     return array.findIndex((obj) => key == obj.hour);
   }
 
-  // get event from hour in local storage array
-  function getValueFromKeyInArray(key, array) {
-    return array.find((obj) => obj.hour == key)?.event;
-  }
-
   // update the local storage
   function saveEvent(event, hour) {
     var timeEvent = { hour: hour, event: event };
@@ -88,10 +83,16 @@ $(function () {
     getEvents();
   }
 
-  // show notification of saved or updated
+  // show notification of saved or updated for a few seconds
   function ack(action) {
-    // TODO: display ack in #ack for few seconds and then remove
-    console.log("Event " + action + " and monitored from Earth.");
+    var notification = document.getElementById("ack");
+    var notificationText = document.getElementById("ack-text");
+    notificationText.textContent =
+      "Event " + action + " and monitored from Earth.";
+    notification.style.display = "block"; // display notification
+    setTimeout(function () {
+      notification.style.display = "none"; // hide notiification
+    }, 3000);
   }
 
   // get events from local storage
