@@ -2,6 +2,8 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+  var eventsArray = [];
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -54,19 +56,52 @@ $(function () {
     var element = event.srcElement; // element selected
     var idNeeded = element.id.split("_")[0]; // we need the id of the parent div
     var eventElement = document.querySelectorAll("#" + idNeeded + "> textarea"); // we search for the div and then inside for the textarea
-    var eventText = eventElement.value(); // we get the value inside the textarea for that specific hour
+    var eventText = eventElement[0].value; // we get the value inside the textarea for that specific hour
     saveEvent(eventText, idNeeded);
+  }
+
+  // check if hour exists in local storage array
+  function isKeyInArray(key, array) {
+    return array.findIndex((obj) => key == obj.hour);
+  }
+
+  // get event from hour in local storage array
+  function getValueFromKeyInArray(key, array) {
+    return array.find((obj) => obj.hour == key)?.event;
   }
 
   // update the local storage
   function saveEvent(event, hour) {
-    ack();
+    var timeEvent = { hour: hour, event: event };
+    // check if key exists
+    var eventIndexInArray = isKeyInArray(hour, eventsArray);
+    if (eventIndexInArray >= 0) {
+      // event needs to updated
+      eventsArray[eventIndexInArray].event = event;
+      ack("updated");
+    } else {
+      // event needs to be created
+      eventsArray.push(timeEvent);
+      ack("created");
+    }
+    localStorage.setItem("events", JSON.stringify(eventsArray)); // convert the json to string to save it in local storage
+    getEvents();
   }
 
-  // show notification of saved
-  function ack() {}
+  // show notification of saved or updated
+  function ack(action) {
+    console.log("Event " + action + " and monitored from Earth.");
+  }
 
-  function getEvents() {}
+  // get events from local storage
+  function getEvents() {
+    var events = JSON.parse(localStorage.getItem("events")); // convert the string to json to use it
+    console.log(events);
+    displayEvents();
+  }
+
+  // display the events in the dom
+  function displayEvents(events) {}
 
   // Display current time in the header and update every second!
   function whatTimeIsIt() {
